@@ -22,4 +22,5 @@
 hs_err_pid*
 
 SierraLeona/.classpath
-SierraLeona/.settings/org.eclipse.jdt.core.prefs
+SierraLeona/target
+SierraLeona/.settings
