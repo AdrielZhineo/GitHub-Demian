@@ -2,23 +2,42 @@ package modelo;
 
 import java.util.List;
 
-public class Caja {
-public int Saldo;
-public List<Movimiento> movimientos;
+import javax.persistence.*;
 
-//GETTER & SETTER
-public int getSaldo() {
-	return Saldo;
-}
-public void setSaldo(int saldo) {
-	Saldo = saldo;
-}
-public List<Movimiento> getMovimientos() {
-	return movimientos;
-}
-public void setMovimientos(List<Movimiento> movimientos) {
-	this.movimientos = movimientos;
-}
+public class Caja {
+	@Id @GeneratedValue
+	@Column
+	private int id;
+	
+	@Column
+	private int saldo;
+	
+	@OneToMany
+	private List<Movimiento> movimientos;
+
+	public Caja() {}
+	
+	//GETTER & SETTER
+	public int getSaldo() {
+		return saldo;
+	}
+	public void setSaldo(int _saldo) {
+		saldo = _saldo;
+	}
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public List<Movimiento> getMovimientos() {
+		return movimientos;
+	}
+	public void setMovimientos(List<Movimiento> movimientos) {
+		this.movimientos = movimientos;
+	}
 
 
 }
