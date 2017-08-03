@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Caja {
 	@Id @GeneratedValue
 	@Column
-	private int id;
+	private long id;
 	
 	@Column
 	private int saldo;
@@ -18,13 +18,18 @@ public class Caja {
 	public Caja() {}
 	
 	//GETTER & SETTER
+	
 	public int getSaldo() {
 		return saldo;
 	}
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public void setSaldo(int _saldo) {
 		saldo = _saldo;
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

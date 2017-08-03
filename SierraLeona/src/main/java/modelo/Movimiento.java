@@ -8,7 +8,7 @@ public class Movimiento {
 	
 	@Id
 	@Column
-	private int id;
+	private long id;
 	
 	@Column(length = 60)
 	public	Usuario usuario;
@@ -30,9 +30,18 @@ public class Movimiento {
 			}
 			
 	//GETTER & SETTER
+			
 	public Usuario getUsuario() {
 		return usuario;
 	}
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
