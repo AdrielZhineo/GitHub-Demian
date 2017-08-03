@@ -10,13 +10,25 @@ public class Movimiento {
 	@Column
 	private int id;
 	
-	@Column
+	@Column(length = 60)
 	public	Usuario usuario;
+	
+	@Column
 	public Date fechaMovimiento;
+	
+	@Column(length = 60)
 	public TipoMovimiento tipoMovimiento;
+	
+	@Column(length = 60)
 	public String descripcionMovimiento;
+	@Column
 	public int monto;
 
+	// CONSTRUCTOR VACIO
+			public Movimiento() {
+				
+			}
+			
 	//GETTER & SETTER
 	public Usuario getUsuario() {
 		return usuario;

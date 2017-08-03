@@ -1,14 +1,37 @@
 package modelo;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class Usuario {
-	public String nombre;
+	@Id
+	@GeneratedValue
+	private Long id; //no int
+	
+	@Column(length = 60)
+	private String nombre;
+	@Column
 	private String password;
-	public Factura factura;
-	public Caja caja;
+	@Column
+	private Factura factura;
+	private Caja caja;
+	
+	// CONSTRUCTOR VACIO
+			public Usuario() {
+				
+			}
 	
 	// GETTER & SETTER
+	
 	public String getNombre() {
 		return nombre;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

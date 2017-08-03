@@ -3,16 +3,28 @@ package modelo;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class Factura {
-	public Date fechafactura;
-	public	int nFactura;
-	public Usuario usuario;
-	public Cliente cliente;
-	public List<Item> detalle;
-	public EstadoFactura estado;
+	
+	@Id
+	@GeneratedValue
+	private Long id; //no int
+	
+	@Column
+	private Date fechafactura;
+	private	int nFactura;
+	
+	@Column(length = 60)
+	private Usuario usuario;
+	private Cliente cliente;
+	private List<Item> detalle;
+	private EstadoFactura estado;
 
 	
-	// SETTER FACTURA
+	// SETTER FACTURsA
 	public void setFactura(int nroFactura, Usuario user, Cliente client, List<Item> items, Date fecha, String estado ){
 		fechafactura = fecha;
 		nFactura = nroFactura;
@@ -23,12 +35,29 @@ public class Factura {
 		
 
 	}
+	// CONSTRUCTOR VACIO
+			public Factura() {
+				
+			}
 	
-	// GETTER & SETTER	
+	// GETTER & SETTER
+	
 	public Date getFechafactura() {
 		return fechafactura;
 	}
 
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
 	public Date setFechafactura(Date fechafactura) {
 		return fechafactura;

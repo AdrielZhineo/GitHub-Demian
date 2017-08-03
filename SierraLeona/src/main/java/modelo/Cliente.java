@@ -1,15 +1,39 @@
 package modelo;
 
+import javax.persistence.*;
+
+
 public class Cliente {
-		public String razonSocial;
-		public int cuit;
+		
+	@Id
+	@GeneratedValue
+	private long id; //no int
 	
+	@Column(length = 60)
+		private String razonSocial;
+	@Column
+		private int cuit;
+
+// CONSTRUCTOR VACIO
+		public Cliente() {
+			
+		}
+		
 // GETTER & SETTER
+		
 public void setCliente(String razonSocialCliente, int cuitCliente) {
 	razonSocial = razonSocialCliente;
 	cuit = cuitCliente;
 }
 		
+public long getId() {
+	return id;
+}
+
+public void setId(int id) {
+	this.id = id;
+}
+
 public String getRazonSocial() {
 			return razonSocial;
 		}

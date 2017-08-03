@@ -1,11 +1,31 @@
 package modelo;
 
-public class Item {
-	public Producto producto;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+public class Item {
+	@Id
+	@GeneratedValue
+	private Long id; //no int
+	
+	
+	private Producto producto;
+
+	// CONSTRUCTOR VACIO
+			public Item() {
+				
+			}
 	// GETTER & SETTER	
+	
 	public Producto getProducto() {
 		return producto;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public void setProducto(Producto producto) {
 		this.producto = producto;
