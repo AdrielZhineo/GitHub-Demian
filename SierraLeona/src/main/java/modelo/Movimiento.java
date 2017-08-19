@@ -4,33 +4,36 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+
+@Entity
+@Table(name = "MOVIMIENTO")
 public class Movimiento {
-	
-	@Id
+
+	@Id @GeneratedValue
 	@Column
 	private long id;
-	
+
 	@Column(length = 60)
 	public	Usuario usuario;
-	
+
 	@Column
 	public Date fechaMovimiento;
-	
+
 	@Column(length = 60)
 	public TipoMovimiento tipoMovimiento;
-	
+
 	@Column(length = 60)
 	public String descripcionMovimiento;
 	@Column
 	public int monto;
 
 	// CONSTRUCTOR VACIO
-			public Movimiento() {
-				
-			}
-			
+	public Movimiento() {
+
+	}
+
 	//GETTER & SETTER
-			
+
 	public Usuario getUsuario() {
 		return usuario;
 	}

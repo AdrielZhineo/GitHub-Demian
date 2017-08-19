@@ -2,7 +2,8 @@ package repos;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import javax.persistence.criteria.CriteriaQuery;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,6 +12,7 @@ import org.hibernate.cfg.Configuration;
 import modelo.Caja;
 import modelo.Cliente;
 import modelo.EstadoFactura;
+import modelo.Factura;
 import modelo.Item;
 import modelo.Movimiento;
 import modelo.Producto;
@@ -28,27 +30,26 @@ public abstract class Repositorio<T> {
 			.addAnnotatedClass(Producto.class)
 			.addAnnotatedClass(TipoMovimiento.class)
 			.addAnnotatedClass(Usuario.class)
+			.addAnnotatedClass(Factura.class)
 			.buildSessionFactory();
 
-	@SuppressWarnings("unchecked")
 	public List<T> allInstances() {
 		Session session = sessionFactory.openSession();
 		try {
-			Criteria criteria = session.createCriteria(getEntityType());
-			this.addQueryAllInstances(criteria);
-			return criteria.list();
+			CriteriaQuery<T> query = session.getCriteriaBuilder().createQuery(getEntityType());
+			this.addQueryAllInstances(query);
+			return session.createQuery(query).getResultList();
 		} finally {
 			session.close();
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<T> searchByExample(T t) {
 		Session session = sessionFactory.openSession();
 		try {
-			Criteria criteria = session.createCriteria(getEntityType());
-			this.addQueryByExample(criteria, t);
-			return criteria.list();
+			CriteriaQuery<T> query = session.getCriteriaBuilder().createQuery(getEntityType());
+			this.addQueryByExample(query, t);
+			return session.createQuery(query).getResultList();
 		} catch (HibernateException e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -103,8 +104,8 @@ public abstract class Repositorio<T> {
 	}
 
 	protected abstract Class<T> getEntityType();
-	protected abstract void addQueryByExample(Criteria criteria, T t);
-	protected abstract void addQueryAllInstances(Criteria criteria);
+	protected abstract void addQueryByExample(CriteriaQuery<T> criteria, T t);
+	protected abstract void addQueryAllInstances(CriteriaQuery<T> criteria);
 
 
 }

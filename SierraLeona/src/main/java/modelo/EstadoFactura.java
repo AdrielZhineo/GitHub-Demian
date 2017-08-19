@@ -1,24 +1,29 @@
 package modelo;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name = "ESTADOFACTURA")
 public class EstadoFactura {
-	@Id
-	@GeneratedValue
+	@Id @GeneratedValue
+	@Column
 	private Long id; //no int
-	
+
 	@Column(length = 60)
 	private String estado;
 
 	// CONSTRUCTOR VACIO
-			public EstadoFactura() {
-				
-			}
-	
-// GETTER & SETTER
-	
+	public EstadoFactura() {
+
+	}
+
+	// GETTER & SETTER
+
 	public String getEstado() {
 		return estado;
 	}
@@ -34,8 +39,5 @@ public class EstadoFactura {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	public void cambiarEstadoFactura(String est) {
-		estado = est;
-	}
+
 }

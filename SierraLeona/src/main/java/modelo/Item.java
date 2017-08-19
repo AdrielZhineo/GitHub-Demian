@@ -1,23 +1,34 @@
 package modelo;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name = "ITEM")
 public class Item {
-	@Id
-	@GeneratedValue
+	@Id @GeneratedValue
+	@Column
 	private Long id; //no int
-	
-	
+
+	@Column
 	private Producto producto;
+	
+	@Column
+	public int precio;
+	
+	@Column
+	public int cantidad;
 
 	// CONSTRUCTOR VACIO
-			public Item() {
-				
-			}
+	public Item() {
+
+	}
 	// GETTER & SETTER	
-	
+
 	public Producto getProducto() {
 		return producto;
 	}
@@ -42,9 +53,7 @@ public class Item {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	public int precio;
-	public int cantidad;
-	
+
 	public String toString() {
 		String valor = new String();
 		valor += "Precio " + this.precio + " Cantidad " + this.cantidad;

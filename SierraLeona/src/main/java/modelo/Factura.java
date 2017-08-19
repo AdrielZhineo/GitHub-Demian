@@ -4,44 +4,45 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name = "FACTURA")
 public class Factura {
-	
-	@Id
-	@GeneratedValue
+
+	@Id @GeneratedValue
+	@Column
 	private Long id; //no int
-	
+
 	@Column
 	private Date fechafactura;
 	private	int nFactura;
-	
+
 	@Column(length = 60)
 	private Usuario usuario;
 	private Cliente cliente;
 	private List<Item> detalle;
 	private EstadoFactura estado;
 
-	
-	// SETTER FACTURsA
-	public void setFactura(int nroFactura, Usuario user, Cliente client, List<Item> items, Date fecha, String estado ){
+	//Constructores
+	public Factura(int nroFactura, Usuario user, Cliente client, List<Item> items, Date fecha, EstadoFactura _estado ){
 		fechafactura = fecha;
 		nFactura = nroFactura;
 		usuario = user;
 		cliente = client;
 		detalle = items;
-		estado = "No pagada";
-		
+		estado = _estado;
+	}
+	public Factura() {
 
 	}
-	// CONSTRUCTOR VACIO
-			public Factura() {
-				
-			}
-	
+
 	// GETTER & SETTER
-	
+
 	public Date getFechafactura() {
 		return fechafactura;
 	}
@@ -116,6 +117,6 @@ public class Factura {
 
 	public double total() {
 		return detalle.stream().mapToInt(item -> item.getCantidad() * item.getPrecio()).sum();
-		}
+	}
 
 }

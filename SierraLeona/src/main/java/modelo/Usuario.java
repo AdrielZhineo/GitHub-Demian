@@ -1,14 +1,18 @@
 package modelo;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "USUARIO")
 public class Usuario {
-	@Id
-	@GeneratedValue
-	private Long id; //no int
-	
+	@Id @GeneratedValue
+	@Column
+	private Long id; 
+
 	@Column(length = 60)
 	private String nombre;
 	@Column
@@ -16,14 +20,17 @@ public class Usuario {
 	@Column
 	private Factura factura;
 	private Caja caja;
-	
+
 	// CONSTRUCTOR VACIO
-			public Usuario() {
-				
-			}
+	public Usuario() {}
 	
+	public Usuario(String _nombre, String _password) {
+		this.nombre = _nombre;
+		this.password = _password;
+	}
+
 	// GETTER & SETTER
-	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -54,6 +61,6 @@ public class Usuario {
 	public void setCaja(Caja caja) {
 		this.caja = caja;
 	}
-	
-	
+
+
 }
